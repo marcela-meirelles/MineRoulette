@@ -2,6 +2,7 @@ package com.mmg;
 
 import javax.swing.*;
 import javax.swing.table.*;
+import java.awt.*;
 import java.util.Enumeration;
 
 /*
@@ -11,21 +12,66 @@ GameStyle will be in style layer
 
  */
 
-public class GameBoard extends JTable {
+public class GameBoard extends JFrame {
 
-    JTable table;
-    GameModel gameModel;
-    DefaultTableModel tm;
-    String[] heading = new String[]{"1", "2", "3", "4", "5", "6", "7", "8"};
-    GameStyle style;
+    JTable              table       = new JTable();
+    JScrollPane         panel       = new JScrollPane();
+    GameModel           gameModel;
+    DefaultTableModel   tm;
+    String[]            heading     = new String[]{"1", "2", "3", "4", "5", "6", "7", "8"};
+    GameStyle           style;
 
 
     // Constructor
     public GameBoard(JTable table, GameModel gameModel, GameStyle style) {
-        this.table = table;
+        this.table      = table;
         //table.setRowHeight(GameStyle.CELL_SIZE);
-        this.gameModel = gameModel;
-        this.style = style;
+        this.gameModel  = gameModel;
+        this.style      = style;
+    }
+
+    public GameBoard(){
+
+        JButton btn_bomb = new JButton();
+        btn_bomb.setText("B");
+
+        table.setRowHeight(60);
+        table.setBounds(100,100,100,100);
+
+        IconRenderer icnRenderer = new IconRenderer();
+        tm = new MyTableModel(heading);
+        for (int row = 0; row < 8; row++) {
+
+            Object[] rowData = new Object[8];
+            for (int col = 0; col < 8; col++) {
+                rowData[col] = btn_bomb;
+            }
+            tm.addRow(rowData);
+        }
+
+        table.setModel(tm);
+        Enumeration<TableColumn> columns = table.getColumnModel().getColumns();
+        for (int colIndex = 0; colIndex < 8; colIndex++) {
+            TableColumn cbCol = table.getColumnModel().getColumn(colIndex);
+            cbCol.setCellRenderer(icnRenderer);
+            columns.nextElement().setPreferredWidth(GameStyle.CELL_SIZE);
+        }
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+
+
+        table.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+                        {btn_bomb, btn_bomb, btn_bomb, btn_bomb},
+                        {btn_bomb, btn_bomb, btn_bomb, btn_bomb},
+                        {btn_bomb, btn_bomb, btn_bomb, btn_bomb},
+                        {btn_bomb, btn_bomb, btn_bomb, btn_bomb}
+                },
+                new String [] {
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }
+        ));
+
+        panel.setViewportView(table);
     }
 
     public void setStyle(GameStyle style) {

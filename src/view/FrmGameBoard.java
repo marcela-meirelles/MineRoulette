@@ -29,7 +29,7 @@ public class FrmGameBoard extends JFrame {
     String[]        heading =      new String[]{"1", "2", "3", "4", "5", "6", "7", "8"};
     GameStyle       style;
 
-    GameBoard       gameBoard =   new GameBoard(table, gameModel, style);
+    GameBoard       game_board =   new GameBoard();
 
     // Components
     JPanel panel =          new JPanel();
@@ -106,7 +106,7 @@ public class FrmGameBoard extends JFrame {
         panel       .add(board_panel,   "board_panel");
 
         // adding the gameBoard to the board_panel
-        board_panel .add(gameBoard,     "gameBoard");
+        board_panel .add(game_board,     "game_board");
 
         // Add event to withdraw button - will withdraw the user from the game, causing losing the game
         btn_withdraw.addActionListener(new ActionListener() {

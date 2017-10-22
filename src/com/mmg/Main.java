@@ -13,19 +13,17 @@ public class Main {
 		frm.setTitle("Blow up!");
 		frm.setLocationRelativeTo(null);
 		frm.setVisible(true);
-
+*/
 		FrmGameBoard frm_game = new FrmGameBoard();
 		frm_game.setTitle("Blow up!");
 		frm_game.setLocationRelativeTo(null);
 		frm_game.setVisible(true);
-*/
-		FrmChooseGame frm_choose_game = new FrmChooseGame();
-		frm_choose_game.setLocationRelativeTo(null);
-		frm_choose_game.setVisible(true);
 
-//		GameBoard frm_gb = new GameBoard();
+
+//		FrmChooseGame frm_choose_game = new FrmChooseGame();
 //		frm_choose_game.setLocationRelativeTo(null);
 //		frm_choose_game.setVisible(true);
+
 
 	    //Game game = new Game();
 
