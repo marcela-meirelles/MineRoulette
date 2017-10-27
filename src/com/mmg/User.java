@@ -1,6 +1,6 @@
 package com.mmg;
 
-public class User {
+public abstract class User {
     // Variables
     private String username;
     private String password;

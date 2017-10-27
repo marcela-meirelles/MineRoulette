@@ -4,16 +4,20 @@ import java.util.ArrayList;
 
 public class Application {
 
-    private ArrayList<User> user_list = new ArrayList<User>();
-    private ArrayList<Game> game_list = new ArrayList<Game>();
+    private ArrayList<Player>   user_list   = new ArrayList<Player>();
+    private ArrayList<Admin>    admin_list  = new ArrayList<Admin>();
+    private ArrayList<Game>     game_list   = new ArrayList<Game>();
 
     // Singleton STARTS
     // not sure if I must use singleton since it can be played by multiple users at the same time
     private static Application e = null;
 
     private Application(){
-        user_list = new ArrayList();
-        game_list = new ArrayList();
+        user_list   = new ArrayList();
+        admin_list  = new ArrayList();
+        game_list   = new ArrayList();
+
+        loadData();
     }
 
     public static Application getInstance(){
@@ -24,22 +28,60 @@ public class Application {
     }
     // Singleton ENDS
 
-    // Users methods
-    public void addUser(User u){
-        user_list.add(u);
+    // Dummy Data
+    public void loadData(){
+        user_list   .add(new Player("Player1", "12345", "Player1 12345", 1000.23F));
+        user_list   .add(new Player("Player2", "12345", "Player2 12345", 1000.23F));
+        admin_list  .add(new Admin("Admin", "Admin", "Admin Admin"));
+    }
+    // Ends Dummy Data
+
+    // Player methods
+    public void addUser(Player p){
+        user_list.add(p);
     }
 
-    public ArrayList<User> getUserList(){
-        return (ArrayList<User>)user_list.clone();
+    public ArrayList<Player> getUserList(){
+        return (ArrayList<Player>)user_list.clone();
     }
 
-    public User searchUser(String username){
-        for (User u : user_list){
+    public Player searchUser(String username){
+        for (Player u : user_list){
             if(username == u.getUsername()){
                 return u;
             }
         }
         return null;
+    }
+
+    // Admin methods
+    public void addAdmin(Admin a){
+        admin_list.add(a);
+    }
+
+    public ArrayList<Admin> getAdminList(){
+        return (ArrayList<Admin>)admin_list.clone();
+    }
+
+    public Admin searchAdmin(String username){
+        for (Admin u : admin_list){
+            if(username == u.getUsername()){
+                return u;
+            }
+        }
+        return null;
+    }
+
+    // AnyUser Methods
+    public User searchAnyUser(String username){
+        User u = null;
+        try{
+            u = searchAdmin(username);
+        }catch(Exception e){}
+        try{
+            u = searchUser(username);
+        }catch(Exception e){}
+        return u;
     }
 
     // Game methods

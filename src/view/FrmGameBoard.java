@@ -3,16 +3,15 @@ package view;
 import com.mmg.*;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FrmGameBoard extends JFrame {
 
-    public static final int     WIDTH     = 840;
-    public static final int     HEIGHT    = 620;
-    public static final String  WINDOW_NAME  = "BLOW UP!!";
+    public static final int     WIDTH           = 840;
+    public static final int     HEIGHT          = 620;
+    public static final String  WINDOW_NAME     = "BLOW UP!!";
 
     // TODO: Set labels lbl_user1 and lbl_user2 with the following messages, according to what's needed
     private String waiting_for_player   = "Waiting for Player ";
@@ -23,27 +22,26 @@ public class FrmGameBoard extends JFrame {
     private Game    game;
     private Timer   timer;
 
-    private JTable  table       =   new JTable();
-
     // Components
-    JPanel          panel       =   new JPanel();
-    JScrollPane     board_panel =   new JScrollPane();
-
+    private JTable          table       =   new JTable();
+    private JPanel          panel       =   new JPanel();
+    private JScrollPane     board_panel =   new JScrollPane();
     // board_panel will contain the actual board where the game is played
 
-    JLabel lbl_user1        = new JLabel();
-    JLabel lbl_user2        = new JLabel();
-    JLabel lbl_bet_user1    = new JLabel();
-    JLabel lbl_bet_user2    = new JLabel();
-    JLabel lbl_timer        = new JLabel();
-    JLabel lbl_bet_pool     = new JLabel();
-    JLabel lbl_turn         = new JLabel();
+    private JLabel lbl_user1        = new JLabel();
+    private JLabel lbl_user2        = new JLabel();
+    private JLabel lbl_bet_user1    = new JLabel();
+    private JLabel lbl_bet_user2    = new JLabel();
+    private JLabel lbl_timer        = new JLabel();
+    private JLabel lbl_bet_pool     = new JLabel();
+    private JLabel lbl_turn         = new JLabel();
 
-    JButton btn_withdraw    = new JButton();
-    JLabel  lbl_withdraw    = new JLabel();
+    private JButton btn_withdraw    = new JButton();
+    private JLabel  lbl_withdraw    = new JLabel();
 
     // Constructor
     public FrmGameBoard(){
+
         setFocusable(true);
         setPreferredSize(new Dimension(WIDTH,HEIGHT));
 

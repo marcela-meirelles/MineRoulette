@@ -2,18 +2,9 @@ package com.mmg;
 
 import javax.swing.*;
 import javax.swing.table.*;
-import java.awt.*;
 
 
-
-/*
-
-GameModel will be in the logic layer
-GameStyle will be in style layer
-
- */
-
-public class GameBoard extends JPanel {
+public class GameBoard {
 
     private JTable              table           = new JTable();
     private JScrollPane         panel           = new JScrollPane();
@@ -22,7 +13,7 @@ public class GameBoard extends JPanel {
     private String[]            heading         = new String[]{"1", "2", "3", "4", "5", "6", "7", "8"};
     private GameStyle           style;
     int                         CELL_WIDTH      = 100;
-    int                         NUMBER_OF_ROWS  = 9;
+    int                         NUMBER_OF_ROWS;
 
     // Constructor
     public GameBoard(){
@@ -43,24 +34,6 @@ public class GameBoard extends JPanel {
 
     private void start(){
 
-        panel.setVisible(true);
-        panel.setBounds(200,200,200,200);
-
-        table.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
-                },
-                new String [] {
-                        "Title 1", "Title 2", "Title 3", "Title 4"
-                }
-        ));
-
-        panel.setViewportView(table);
-
-
         /*
         table.getColumnModel().getColumn(0).setPreferredWidth(CELL_WIDTH);
         table.getColumnModel().getColumn(1).setPreferredWidth(CELL_WIDTH);
@@ -75,32 +48,10 @@ public class GameBoard extends JPanel {
     }
 
     private void addToTable(){
-        JButton btn_bomb = new JButton();
-        btn_bomb.setText("B");
-
-        //   NEEDS TO WORK!!!!!!!!!!!!!!!!!! <<<<<<<<<<<<<<<<<<
-        //table.getColumnModel().getColumn(4).setCellEditor(new DefaultCellEditor(btn_bomb));
-        table.getColumnModel().getColumn(4).setCellRenderer(new Render_Button());
 
     }
 
-    class Render_Button extends JButton implements TableCellRenderer{
-        private final JComponent component = new JButton();
 
-        public Render_Button(){
-            setOpaque(true);
-        }
-
-        @Override
-        public Component getTableCellRendererComponent(JTable jTable, Object o, boolean b, boolean b1, int i, int i1) {
-            //Color de fondo de la celda
-            ( (JButton) component).setBackground( new Color(98,138,183) );
-//            //obtiene valor boolean y coloca valor en el JCheckBox
-//            boolean b = ((Boolean) value).booleanValue();
-//            ( (JButton) component).setSelected( b );
-            return ( (JButton) component);
-        }
-    }
 
     /*
     public GameBoard_(){
