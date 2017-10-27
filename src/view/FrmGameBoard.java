@@ -23,31 +23,24 @@ public class FrmGameBoard extends JFrame {
     private Game    game;
     private Timer   timer;
 
-    JTable          table;
-    GameModel       gameModel;
-    DefaultTableModel tm;
-    String[]        heading =      new String[]{"1", "2", "3", "4", "5", "6", "7", "8"};
-    GameStyle       style;
-
-    GameBoard       game_board =   new GameBoard();
+    private JTable  table       =   new JTable();
 
     // Components
-    JPanel panel =          new JPanel();
-    JPanel board_panel =    new JPanel();
+    JPanel          panel       =   new JPanel();
+    JScrollPane     board_panel =   new JScrollPane();
+
     // board_panel will contain the actual board where the game is played
 
-    JLabel lbl_user1 =      new JLabel();
-    JLabel lbl_user2 =      new JLabel();
-    JLabel lbl_bet_user1 =  new JLabel();
-    JLabel lbl_bet_user2 =  new JLabel();
-    JLabel lbl_timer =      new JLabel();
-    JLabel lbl_bet_pool =   new JLabel();
-    JLabel lbl_turn =       new JLabel();
+    JLabel lbl_user1        = new JLabel();
+    JLabel lbl_user2        = new JLabel();
+    JLabel lbl_bet_user1    = new JLabel();
+    JLabel lbl_bet_user2    = new JLabel();
+    JLabel lbl_timer        = new JLabel();
+    JLabel lbl_bet_pool     = new JLabel();
+    JLabel lbl_turn         = new JLabel();
 
-    JButton btn_withdraw =  new JButton();
-    JLabel lbl_withdraw =   new JLabel();
-
-    //JTable board = new JTable();
+    JButton btn_withdraw    = new JButton();
+    JLabel  lbl_withdraw    = new JLabel();
 
     // Constructor
     public FrmGameBoard(){
@@ -97,16 +90,32 @@ public class FrmGameBoard extends JFrame {
         panel.add(btn_withdraw,     "btn_withdraw");
         panel.add(lbl_withdraw,     "lbl_withdraw");
 
+
+
+        table.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null}
+                },
+                new String [] {
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }
+        ));
+
+        // board_panel will contain the actual board where the game is played
+        panel       .add(board_panel, "board_panel");
+        board_panel .setViewportView(table);
+        board_panel .setBounds(300,50,450,450);
+
         this.setSize(WIDTH,HEIGHT);
         this.setTitle(WINDOW_NAME);
         this.setContentPane(panel);
-
-
-        // board_panel will contain the actual board where the game is played
-        panel       .add(board_panel,   "board_panel");
-
-        // adding the gameBoard to the board_panel
-        board_panel .add(game_board,     "game_board");
 
         // Add event to withdraw button - will withdraw the user from the game, causing losing the game
         btn_withdraw.addActionListener(new ActionListener() {

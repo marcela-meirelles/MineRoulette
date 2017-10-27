@@ -3,7 +3,8 @@ package com.mmg;
 import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
-import java.util.Enumeration;
+
+
 
 /*
 
@@ -12,25 +13,97 @@ GameStyle will be in style layer
 
  */
 
-public class GameBoard extends JFrame {
+public class GameBoard extends JPanel {
 
-    JTable              table       = new JTable();
-    JScrollPane         panel       = new JScrollPane();
-    GameModel           gameModel;
-    DefaultTableModel   tm;
-    String[]            heading     = new String[]{"1", "2", "3", "4", "5", "6", "7", "8"};
-    GameStyle           style;
-
+    private JTable              table           = new JTable();
+    private JScrollPane         panel           = new JScrollPane();
+    private GameModel           gameModel;
+    private DefaultTableModel   tm;
+    private String[]            heading         = new String[]{"1", "2", "3", "4", "5", "6", "7", "8"};
+    private GameStyle           style;
+    int                         CELL_WIDTH      = 100;
+    int                         NUMBER_OF_ROWS  = 9;
 
     // Constructor
-    public GameBoard(JTable table, GameModel gameModel, GameStyle style) {
-        this.table      = table;
+    public GameBoard(){
+            //JTable table, GameModel gameModel, GameStyle style) {
+        //this.table      = table;
         //table.setRowHeight(GameStyle.CELL_SIZE);
-        this.gameModel  = gameModel;
-        this.style      = style;
+//        this.gameModel  = gameModel;
+//        this.style      = style;
+        //JTable table = new JTable();
+        /* INIT COMPONENTS NEEDS TO WORK!!!!!!!!!!!!!!!!!! <<<<<<<<<<<<<<<<<<
+        initComponents();
+        */
+        //setLocationRelativeTo(null);
+//        table.setVisible(true);
+
+        start();
     }
 
-    public GameBoard(){
+    private void start(){
+
+        panel.setVisible(true);
+        panel.setBounds(200,200,200,200);
+
+        table.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null}
+                },
+                new String [] {
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }
+        ));
+
+        panel.setViewportView(table);
+
+
+        /*
+        table.getColumnModel().getColumn(0).setPreferredWidth(CELL_WIDTH);
+        table.getColumnModel().getColumn(1).setPreferredWidth(CELL_WIDTH);
+        table.getColumnModel().getColumn(2).setPreferredWidth(CELL_WIDTH);
+        table.getColumnModel().getColumn(3).setPreferredWidth(CELL_WIDTH);
+        table.getColumnModel().getColumn(4).setPreferredWidth(CELL_WIDTH);
+
+        tm = (DefaultTableModel) table.getModel();
+        tm.setNumRows(NUMBER_OF_ROWS);
+*/
+
+    }
+
+    private void addToTable(){
+        JButton btn_bomb = new JButton();
+        btn_bomb.setText("B");
+
+        //   NEEDS TO WORK!!!!!!!!!!!!!!!!!! <<<<<<<<<<<<<<<<<<
+        //table.getColumnModel().getColumn(4).setCellEditor(new DefaultCellEditor(btn_bomb));
+        table.getColumnModel().getColumn(4).setCellRenderer(new Render_Button());
+
+    }
+
+    class Render_Button extends JButton implements TableCellRenderer{
+        private final JComponent component = new JButton();
+
+        public Render_Button(){
+            setOpaque(true);
+        }
+
+        @Override
+        public Component getTableCellRendererComponent(JTable jTable, Object o, boolean b, boolean b1, int i, int i1) {
+            //Color de fondo de la celda
+            ( (JButton) component).setBackground( new Color(98,138,183) );
+//            //obtiene valor boolean y coloca valor en el JCheckBox
+//            boolean b = ((Boolean) value).booleanValue();
+//            ( (JButton) component).setSelected( b );
+            return ( (JButton) component);
+        }
+    }
+
+    /*
+    public GameBoard_(){
 
         JButton btn_bomb = new JButton();
         btn_bomb.setText("B");
