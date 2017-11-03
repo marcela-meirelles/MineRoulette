@@ -89,27 +89,29 @@ public class FrmGameBoard extends JFrame {
         panel.add(lbl_withdraw,     "lbl_withdraw");
 
 
-
-        table.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
-                },
-                new String [] {
-                        "Title 1", "Title 2", "Title 3", "Title 4"
-                }
-        ));
+        //setModel(new DefaultTableModel(nombreDeArray, tituloColumnas));
+        GameBoard gb = new GameBoard(3);
+        table = gb.getTable();
+//        table.setModel(new javax.swing.table.DefaultTableModel(
+//                new Object [][] {
+//                        {null, null, null, null},
+//                        {null, null, null, null},
+//                        {null, null, null, null},
+//                        {null, null, null, null},
+//                        {null, null, null, null},
+//                        {null, null, null, null},
+//                        {null, null, null, null},
+//                        {null, null, null, null}
+//                },
+//                new String [] {
+//                        "Title 1", "Title 2", "Title 3", "Title 4"
+//                }
+//        ));
 
         // board_panel will contain the actual board where the game is played
         panel       .add(board_panel, "board_panel");
         board_panel .setViewportView(table);
-        board_panel .setBounds(300,50,450,450);
+        board_panel .setBounds(300,50,450,470);
 
         this.setSize(WIDTH,HEIGHT);
         this.setTitle(WINDOW_NAME);

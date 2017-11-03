@@ -8,29 +8,33 @@ import java.awt.image.BufferedImage;
 
 public class Game extends JPanel implements KeyListener, Runnable{
     // Variables
-    Player player1;
-    Player player2;
-    private float bet_player1;
-    private float bet_player2;
-    private float bet_total;
-    private int turn;
-    private GameBoard board;
+    Player                  player1;
+    Player                  player2;
+    private float           bet_player1;
+    private float           bet_player2;
+    private float           bet_total;
+    private int             turn;
+    private GameBoard       board;
 
-    public static final int WIDTH = 400;
-    public static final int HEIGHT = 630;
-    private Thread game;
-    private boolean running;
-    private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+    public static final int WIDTH   = 400;
+    public static final int HEIGHT  = 630;
+    private Thread          game;
+    private boolean         running;
+    private BufferedImage   image   = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
-    private long startTime;
-    private long elapsed;
-    private boolean set;
+    private long            startTime;
+    private long            elapsed;
+    private boolean         set;
 
     // Constructor
     public Game(){
         setFocusable(true);
         setPreferredSize(new Dimension(WIDTH,HEIGHT));
         addKeyListener(this);
+    }
+
+    public void startSelectedGame(int size){
+        board = new GameBoard(size);
     }
 
     // Methods
@@ -123,7 +127,7 @@ public class Game extends JPanel implements KeyListener, Runnable{
         if(System.currentTimeMillis() - fpsTimer > 1000){
             System.out.printf("%d fps %d updates", fps, updates);
             System.out.println();
-            fps = 0;
+            fps     = 0;
             updates = 0;
             fpsTimer += 1000;
         }

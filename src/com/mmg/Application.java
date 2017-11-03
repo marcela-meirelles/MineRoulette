@@ -17,6 +17,7 @@ public class Application {
         admin_list  = new ArrayList();
         game_list   = new ArrayList();
 
+        // Load Dummy Data
         loadData();
     }
 
@@ -47,7 +48,7 @@ public class Application {
 
     public Player searchUser(String username){
         for (Player u : user_list){
-            if(username == u.getUsername()){
+            if(username == u.getUsername()){ //maybe should use equals()
                 return u;
             }
         }
@@ -65,7 +66,7 @@ public class Application {
 
     public Admin searchAdmin(String username){
         for (Admin u : admin_list){
-            if(username == u.getUsername()){
+            if(username == u.getUsername()){ //maybe should use equals()
                 return u;
             }
         }

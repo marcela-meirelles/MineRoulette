@@ -5,7 +5,7 @@ import java.awt.*;
 import java.net.URL;
 
 public class GameStyle {
-    public static int CELL_SIZE = 60;
+    public static int CELL_SIZE = 20;
 
     // can use this or ImageIcon
     URL iconURL = getClass().getResource("/some/package/favicon.png");
