@@ -1,5 +1,6 @@
 package com.mmg;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -8,8 +9,8 @@ public class Cell {
     private boolean hasBomb     = false;
     private boolean isClicked   = false;
 
-    public static final int WIDTH = 80;
-    public static final int HEIGHT = 80;
+//    public static final int WIDTH = 80;
+//    public static final int HEIGHT = 80;
 
     private BufferedImage cellImage;
     private Color background;
@@ -18,19 +19,19 @@ public class Cell {
     private int y;
 
     public Cell(boolean hasBomb, int x, int y, boolean isClicked){
-        this.hasBomb = hasBomb;
-        this.isClicked = isClicked;
-        this.x = x;
-        this.y = y;
+        this.hasBomb    = hasBomb;
+        this.isClicked  = isClicked;
+        this.x          = x;
+        this.y          = y;
        // cellImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         //drawImage();
     }
 
     public Cell(boolean hasBomb, boolean isClicked){
-        this.hasBomb = hasBomb;
-        this.isClicked = isClicked;
+        this.hasBomb    = hasBomb;
+        this.isClicked  = isClicked;
 
-        //drawCell();
+        drawCell();
         //cellImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         //drawImage();
     }
@@ -48,19 +49,21 @@ public class Cell {
         background = new Color(0xe9e9e9);
         text = new Color(0x0000000);
 
-        Graphics g = cellImage.createGraphics();
-        g.create(40,40,40,40);
+        ImageIcon icon;
+        //= new ImageIcon("D:\\ORT\\DDA 2017\\obligatorio\\cell_lightgrey.png");
+        icon = new ImageIcon(System.getProperty("user.dir") + "D:\\ORT\\DDA 2017\\obligatorio\\cell_lightgrey.png" );
+        //g.create(40,40,40,40);
     }
 
     private void drawImage(){
-        Graphics2D g = (Graphics2D) cellImage.getGraphics();
+        Graphics2D g    = (Graphics2D) cellImage.getGraphics();
         //g.create(40,40,40,40);
         if(hasBomb){
-            background = new Color(0xe9e9e9);
-            text = new Color(0x000000);
+            background  = new Color(0xE96B6D);
+            text        = new Color(0x000000);
         }else{
-            background = new Color(0xe6daab);
-            text = new Color(0x000000);
+            background  = new Color(0xe6daab);
+            text        = new Color(0x000000);
         }
     }
 
@@ -80,13 +83,13 @@ public class Cell {
         this.hasBomb = hasBomb;
     }
 
-    public static int getWIDTH() {
-        return WIDTH;
-    }
-
-    public static int getHEIGHT() {
-        return HEIGHT;
-    }
+//    public static int getWIDTH() {
+//        return WIDTH;
+//    }
+//
+//    public static int getHEIGHT() {
+//        return HEIGHT;
+//    }
 
     public BufferedImage getCellImage() {
         return cellImage;

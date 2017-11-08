@@ -6,6 +6,7 @@ public class GameModel {
     public static final int WHITE       = 1;
     public static final int POSSIBLE    = 2;
 
+
     int[][] data = new int[8][8];
 
     public int[][] getBoardData(){

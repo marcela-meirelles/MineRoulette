@@ -34,7 +34,22 @@ class IconRenderer extends DefaultTableCellRenderer {
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        Object firstColumnValue = table.getValueAt(row, 0);
+
+        Object firstColumnValue = table.getValueAt(row, column);
+
+
+        ImageIcon image;
+        if(isSelected)
+        {
+            // 508*508px - real image size
+            image = new ImageIcon(System.getProperty("user.dir") + "D:\\ORT\\DDA 2017\\obligatorio\\cell_lightgrey.png" );
+        }
+        else{
+            System.out.println(  "ver" + System.getProperty("user.dir") + "D:\\ORT\\DDA 2017\\obligatorio\\cell_lightgrey.png");
+            image = new ImageIcon(System.getProperty("user.dir") + "D:\\ORT\\DDA 2017\\obligatorio\\cell_lightgrey.png" + value.toString());
+        }
+        this.setIcon(image);
+        //return this;
 
         setVerticalAlignment(JLabel.TOP);
         setValue(value);

@@ -14,11 +14,11 @@ public class GameBoard {
     private JScrollPane         panel           = new JScrollPane();
     private GameModel           gameModel;
     private DefaultTableModel   tm              = new DefaultTableModel();
-    //private String[]            heading         = new String[]{"1", "2", "3", "4", "5", "6", "7", "8"};
     private GameStyle           style;
-    int                         CELL_WIDTH;
-    int                         NUMBER_OF_ROWS;
+    public static int           CELL_WIDTH;
     private ArrayList<Cell>     cells           = new ArrayList<>();
+
+
     // Constructor
     public GameBoard(){
 
@@ -93,14 +93,6 @@ public class GameBoard {
         this.CELL_WIDTH = CELL_WIDTH;
     }
 
-    public int getNUMBER_OF_ROWS() {
-        return NUMBER_OF_ROWS;
-    }
-
-    public void setNUMBER_OF_ROWS(int NUMBER_OF_ROWS) {
-        this.NUMBER_OF_ROWS = NUMBER_OF_ROWS;
-    }
-
     public ArrayList<Cell> getCells() {
         return cells;
     }
@@ -110,15 +102,13 @@ public class GameBoard {
     }
 
     public GameBoard(int size){
-        CELL_WIDTH = 450 / size;
+        CELL_WIDTH                          = 450 / size;
         tm.setColumnCount(size);
         tm.setRowCount(size);
-        boolean hasBomb = false;
-        int bombCount = 0;
-
-        int cellCount = size*size;
-
-        ArrayList<Cell> cells_helper = new ArrayList<>();
+        boolean             hasBomb         = false;
+        int                 bombCount       = 0;
+        int                 cellCount       = size*size;
+        ArrayList<Cell>     cells_helper    = new ArrayList<>();
 
         // forms all cells, includes bomb in one of them randomly
         for(int i=0; i < cellCount; i++){
@@ -155,6 +145,8 @@ public class GameBoard {
                 // it will always work with position 0
                 data[i][j] = cells_helper.get(0);
                 cells_helper.remove(cells_helper.get(0));
+
+
             }
         }
 
@@ -169,15 +161,19 @@ public class GameBoard {
         tm.setDataVector(data,column_names);
         table.setModel(tm);
 
+
         Enumeration<TableColumn> columns = table.getColumnModel().getColumns();
         for (int colIndex = 0; colIndex < size; colIndex++) {
             TableColumn cbCol = table.getColumnModel().getColumn(colIndex);
             //cbCol.setCellRenderer(icnRenderer);
             //columns.nextElement().setPreferredWidth(CELL_WIDTH);
             columns.nextElement().setWidth(CELL_WIDTH);
+
         }
+
         table.setRowHeight(CELL_WIDTH);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        table.setDefaultRenderer(Object.class, new IconRenderer());
         panel.setViewportView(table);
     }
 

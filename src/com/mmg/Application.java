@@ -31,9 +31,9 @@ public class Application {
 
     // Dummy Data
     public void loadData(){
-        user_list   .add(new Player("Player1", "12345", "Player1 12345", 1000.23F));
-        user_list   .add(new Player("Player2", "12345", "Player2 12345", 1000.23F));
-        admin_list  .add(new Admin("Admin", "Admin", "Admin Admin"));
+        user_list   .add(new Player("player1",  "12345", "Player1 12345", 1000.23F));
+        user_list   .add(new Player("player2",  "12345", "Player2 12345", 1000.23F));
+        admin_list  .add(new Admin( "admin",    "admin", "Admin Admin"));
     }
     // Ends Dummy Data
 

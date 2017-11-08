@@ -8,16 +8,16 @@ public class Main {
 
     public static void main(String[] args) {
 
-/*
+
 		FrmLogIn frm = new FrmLogIn();
 		frm.setTitle("Blow up!");
 		frm.setLocationRelativeTo(null);
 		frm.setVisible(true);
-*/
-		FrmGameBoard frm_game = new FrmGameBoard();
-		frm_game.setTitle("Blow up!");
-		frm_game.setLocationRelativeTo(null);
-		frm_game.setVisible(true);
+
+//		FrmGameBoard frm_game = new FrmGameBoard();
+//		frm_game.setTitle("Blow up!");
+//		frm_game.setLocationRelativeTo(null);
+//		frm_game.setVisible(true);
 
 
 //		FrmChooseGame frm_choose_game = new FrmChooseGame();
